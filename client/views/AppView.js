@@ -15,10 +15,10 @@ var AppView = Backbone.View.extend({
 
   render: function() {
     return this.$el.html([
-      this.playerView.$el,
       this.libraryView.$el,
-      this.queueView.$el
-    ]);
+      this.queueView.$el,
+      this.playerView.$el
+    ]).addClass('container').attr('style', 'padding-right:0');
   }
 
 });

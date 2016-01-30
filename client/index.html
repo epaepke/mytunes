@@ -1,13 +1,20 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>myTunes</title>
+  </head>   
   <body>
     <!-- Scripts may be placed anywhere on a page. But FYI, they block rendering of elements
      below them until after the scripts load-->
+    
     <script src="bower_components/jquery/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
-
     <script src="data/data.js"></script>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles/main.css">
+
 
     <script src="models/SongModel.js"></script>
     <script src="collections/Songs.js"></script>
@@ -20,7 +27,10 @@
     <script src="views/SongQueueEntryView.js"></script>
     <script src="views/SongQueueView.js"></script>
     <script src="views/AppView.js"></script>
-
+    <div class="container" id ="app"> 
+    <div id="banner">
+        <h1 id="title">myTunes</h1>
+    </div>
     <script>
       $(function() {
         // set up model objects
@@ -32,8 +42,23 @@
         var appView = new AppView({model: app});
 
         // put the view onto the screen
-        $('body').append(appView.render());
+        $('#app').append(appView.render());
       });
     </script>
+    <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
+    <script>
+    SC.initialize({
+      client_id: window.CLIENT_ID,
+      redirect_uri: 'http://google.com'
+    });
+
+    // initiate auth popup
+    SC.connect().then(function() {
+      return SC.get('/me');
+    }).then(function(me) {
+      alert('Hello, ' + me.username);
+    });
+    </script>
+    <div>
   </body>
 </html>
