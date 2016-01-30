@@ -8,10 +8,20 @@ var SongQueue = Songs.extend({
 
     this.on('ended', function() {
       this.remove(this.models[0]);
+      this.length && this.playFirst();
     });
+
+    this.on('dequeue', this.remove);
   }
 });
 
 SongQueue.prototype.playFirst = function(){
-  this.models[0].play();
+  this.at(0).play();
+};
+
+
+
+SongQueue.prototype.remove = function(){
+  Backbone.Collection.prototype.remove.call(this, this.at(0));
+  
 };
