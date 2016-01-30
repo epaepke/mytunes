@@ -1,13 +1,23 @@
 // SongQueue.js - Defines a backbone model class for the song queue.
 var SongQueue = Songs.extend({
 
-  playFirst: function(){
-    this.playerView.setSong(model.get('currentSong'));
-  },
+  // playFirst: function(){
+  //   // console.log('called for first song');
+  //   // console.log('this songqueue ', this.models[0]);
+  //   this.models[0].play();
+  //   // this.playerView.setSong(model.get('currentSong'));
+  // },
 
   initialize: function() {
-    this.on('change', this.playFirst);
-    // this.playFirst();
+    this.on('add', function(){
+      console.log('actually working');
+      this.length ===1 && this.playFirst();
+    });
   }
 
+
 });
+
+SongQueue.prototype.playFirst = function(){
+  this.models[0].play();
+};
