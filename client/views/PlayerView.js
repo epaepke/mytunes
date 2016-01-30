@@ -17,13 +17,10 @@ var PlayerView = Backbone.View.extend({
 
   setSong: function(song) {
     this.model = song;
-    //this.$el.('onended', this.model ? this.model.ended.bind(this) : '');
-    console.log('just added onended attribute');
     this.render();
   },
 
   render: function() {
-    console.log('just rendered');
     this.$el.attr('src', this.model ? this.model.get('url') : '');
     return ;
   }
