@@ -3,8 +3,25 @@ var LibraryView = Backbone.View.extend({
 
   tagName: "div",
 
+  events: {
+    onKeyDown: function() {
+
+      // SC.get('/tracks', {
+      //   q: this.$el.val(), license: 'cc-by-sa'})
+      //   .then(function(tracks) {
+      //   console.log(tracks);
+      // });
+      console.log(this.$el.find('input').val());
+    }
+  },
+
+  keyDownHandler: function() {
+    console.log('fired');
+  },
+
   initialize: function() {
     this.render();
+
   },
 
   render: function() {
@@ -12,7 +29,7 @@ var LibraryView = Backbone.View.extend({
     // see http://api.jquery.com/detach/
     this.$el.children().detach();
 
-    this.$el.html('<h3>Library</h3>').append(
+    this.$el.html('<input type = "text" placeholder = "Search" onKeyDown='+this.keyDownHandler.bind(this)+'/>').append(
       this.collection.map(function(song) {
         return new LibraryEntryView({model: song}).render();
       })

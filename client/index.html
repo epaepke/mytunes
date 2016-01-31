@@ -12,6 +12,7 @@
     <script src="bower_components/underscore/underscore.js"></script>
     <script src="bower_components/backbone/backbone.js"></script>
     <script src="data/data.js"></script>
+    <script src="env/config.js"></script>
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="styles/main.css">
 
@@ -49,7 +50,7 @@
     <script>
     SC.initialize({
       client_id: window.CLIENT_ID,
-      redirect_uri: 'http://google.com'
+      redirect_uri: 'http://0.0.0.0:9000/'
     });
 
     // initiate auth popup
